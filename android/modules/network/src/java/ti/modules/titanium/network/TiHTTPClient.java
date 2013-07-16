@@ -1094,8 +1094,13 @@ public class TiHTTPClient
 				// first time through check if we need multipart for POST
 				for (String key : data.keySet()) {
 					Object value = data.get(key);
-
+					
 					if(value != null) {
+						if (method.equals("PUT") == true)
+						{
+							needMultipart = true;
+							break;
+						}
 						// if the value is a proxy, we need to get the actual file object
 						if (value instanceof TiFileProxy) {
 							value = ((TiFileProxy) value).getBaseFile();
